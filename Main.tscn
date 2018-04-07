@@ -1,0 +1,131 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Food.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Kecoak.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="Curve2D" id=1]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 520, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 520 )
+}
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 30
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 5 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="Node" type="Node" index="0"]
+
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 523.8 ]
+}
+Food = ExtResource( 2 )
+Cockroach = ExtResource( 3 )
+HUD = ExtResource( 4 )
+INITIAL_SPEED = 200
+ACCELERATION = 50
+ACCELERATION_OFFSET = 5
+
+[node name="ColorRect2" type="ColorRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 1, 1, 1, 1 )
+
+[node name="SpawnPath" type="Path2D" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( -50, -50 )
+scale = Vector2( 1.20833, 1.09615 )
+curve = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath" index="0"]
+
+position = Vector2( 0, 420.077 )
+rotation = -1.5708
+offset = 100.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = true
+cubic_interp = true
+loop = true
+lookahead = 4.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="SpawnTimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 1.2
+one_shot = false
+autostart = false
+
+[node name="ScoreLabel" type="Label" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 260.0
+margin_top = 20.0
+margin_right = 456.0
+margin_bottom = 55.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Score: 0"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="ProgressBar" type="ProgressBar" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 30.0
+margin_top = 20.0
+margin_right = 190.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 100.0
+exp_edit = false
+rounded = false
+percent_visible = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_Timer_timeout"]
+
+

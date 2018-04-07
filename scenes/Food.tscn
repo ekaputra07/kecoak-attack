@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/Food.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 30 )
+
+[sub_resource type="Curve2D" id=2]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -26.1818, 0, 0, 0, 0, 0, 64, 0 )
+}
+
+[node name="Food" type="StaticBody2D"]
+
+editor/display_folded = true
+position = Vector2( 240, 770 )
+scale = Vector2( 3.4375, 1 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform", "Visibility" ]
+MAX_HEALTH = 100
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -30.0
+margin_right = -32.0
+margin_bottom = -30.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.890625, 0.688843, 0, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 0, 6.5 )
+scale = Vector2( 1, 0.80303 )
+shape = SubResource( 1 )
+
+[node name="EatingPath" type="Path2D" parent="." index="2"]
+
+position = Vector2( -10.9795, 0 )
+scale = Vector2( 0.580645, 1 )
+curve = SubResource( 2 )
+
+[node name="EatingLocation" type="PathFollow2D" parent="EatingPath" index="0"]
+
+position = Vector2( -26.1818, 0 )
+scale = Vector2( 0.0454546, 1 )
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = true
+cubic_interp = true
+loop = true
+lookahead = 4.0
+
+
