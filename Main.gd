@@ -37,6 +37,7 @@ func spawn_cockroach():
 func show_HUD():
 	var hud = HUD.instance()
 	hud.score = score
+	hud.best = 5
 	hud.connect("start_game", self, "start_game")
 	add_child(hud)
 
@@ -51,11 +52,8 @@ func start_game():
 	# add Food
 	var food = Food.instance()
 	food.connect("finish", self, "on_Food_finish")
-	food.connect("health_updated", self, "on_Food_health_updated")
+	food.connect("contamination_updated", self, "on_Food_contamination_updated")
 	add_child(food)
-	
-	# reset progressbar
-	$ProgressBar.value = food.MAX_HEALTH
 	
 	# start spawn timer
 	$SpawnTimer.start()
@@ -77,12 +75,11 @@ func on_Cockroach_eating(energy):
 	
 func update_score(score):
 	emit_signal("score_updated", score)
-	$ScoreLabel.text = str("Score: ", score)
+	$TopPanel/ScoreLabel.text = str("SCORE ", score)
 
 # -----------Food Signals ------------------ #
-func on_Food_health_updated(health):
-	print(str("Food health: ", health))
-	$ProgressBar.value = health
+func on_Food_contamination_updated(contamination):
+	print(str("Food contamination: ", contamination))
 
 func on_Food_finish():
 	print("GAME OVER!!!")

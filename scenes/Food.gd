@@ -1,20 +1,31 @@
 extends StaticBody2D
 
 signal finish
-signal health_updated
+signal contamination_updated
 
-export var MAX_HEALTH = 100
-var health = MAX_HEALTH
+export var MIN_CONTAMINATION = 0
+export var MAX_CONTAMINATION = 100
+var contamination = MIN_CONTAMINATION
+var animated_contamination = MIN_CONTAMINATION
+
+func _ready():
+	if not $Tween.is_active():
+		$Tween.start()
+
+func _process(delta):
+	var rounded_contamination = round(animated_contamination)
+	$Progress.value = rounded_contamination
 
 func eated(energy):
-	if health <= 0:
+	if contamination >= MAX_CONTAMINATION:
 		return
 		
-	print(str("Eated: ", energy))
+	print(str("contaminated: ", energy))
 	
-	health -= energy
-	emit_signal("health_updated", health)
+	contamination += energy
+	emit_signal("contamination_updated", contamination)
+	$Tween.interpolate_property(self, "animated_contamination", animated_contamination, contamination, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
-	if health <= 0:
+	if contamination >= MAX_CONTAMINATION:
 		emit_signal("finish")
 		queue_free()
