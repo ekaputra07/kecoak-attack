@@ -37,7 +37,6 @@ func spawn_cockroach():
 func show_HUD():
 	var hud = HUD.instance()
 	hud.score = score
-	hud.best = 5
 	hud.connect("start_game", self, "start_game")
 	add_child(hud)
 
