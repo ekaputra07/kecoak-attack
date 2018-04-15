@@ -36,6 +36,7 @@ func _on_StartBtn_pressed():
 func _on_HomeBtn_pressed():
 	emit_signal("goto_home")
 	queue_free()
+	Utils.goto_scene("res://scenes/Home.tscn")
 
 func persist_score(score):
 	game_data["best_score"] = score
