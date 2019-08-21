@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/progress_1.png-4bde9807af41e7a34c7798c92edbe3e9.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/images/progress_1.png"
-source_md5="bc8d1462af73c3ec810e826dc4d2dc7a"
-
 dest_files=[ "res://.import/progress_1.png-4bde9807af41e7a34c7798c92edbe3e9.stex" ]
-dest_md5="4278a174ff0c0e83a5459acff172cd70"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

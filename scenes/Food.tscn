@@ -5,103 +5,45 @@
 [ext_resource path="res://assets/images/progress_1.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/progress_2.png" type="Texture" id=4]
 
-[sub_resource type="Curve2D" id=3]
-
-bake_interval = 5.0
+[sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -11.1515, 0, 0, 0, 0, 0, 63.1159, 0 )
 }
 
 [sub_resource type="CircleShape2D" id=2]
-
-custom_solver_bias = 0.0
 radius = 11.7938
 
 [node name="Food" type="StaticBody2D"]
-
 position = Vector2( 240, 770 )
 scale = Vector2( 3.4375, 1 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Transform", "Visibility" ]
-MIN_CONTAMINATION = 0
-MAX_CONTAMINATION = 100
 
-[node name="EatingPath" type="Path2D" parent="." index="0"]
-
+[node name="EatingPath" type="Path2D" parent="."]
 editor/display_folded = true
 position = Vector2( -18.3193, 0 )
 scale = Vector2( 0.705069, 1 )
-curve = SubResource( 3 )
+curve = SubResource( 1 )
 
-[node name="EatingLocation" type="PathFollow2D" parent="EatingPath" index="0"]
-
+[node name="EatingLocation" type="PathFollow2D" parent="EatingPath"]
 position = Vector2( -11.1515, 0 )
 scale = Vector2( 0.0454546, 1 )
-offset = 0.0
-h_offset = 0.0
-v_offset = 0.0
-rotate = true
-cubic_interp = true
-loop = true
-lookahead = 4.0
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
-
+[node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.251954, 0.797469 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="2"]
-
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 10 )
 scale = Vector2( 2.35971, 5.76923 )
 shape = SubResource( 2 )
 
-[node name="Progress" type="TextureProgress" parent="." index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Progress" type="TextureProgress" parent="."]
 margin_left = -20.0
 margin_top = -10.0
 margin_right = 21.0
 margin_bottom = 6.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-min_value = 0.0
-max_value = 100.0
-step = 1.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
 texture_under = ExtResource( 3 )
-texture_over = null
 texture_progress = ExtResource( 4 )
-radial_fill_degrees = 360.0
-radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = true
-_sections_unfolded = [ "Rect", "Textures" ]
 
-[node name="Tween" type="Tween" parent="." index="4"]
-
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
-
-
+[node name="Tween" type="Tween" parent="."]

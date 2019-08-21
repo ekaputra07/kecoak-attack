@@ -9,22 +9,16 @@
 [ext_resource path="res://assets/font/DIN Condensed Bold.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="Curve2D" id=1]
-
-bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 520, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 520 )
 }
 
 [sub_resource type="DynamicFont" id=2]
-
 size = 50
-use_mipmaps = false
 use_filter = true
 font_data = ExtResource( 7 )
-_sections_unfolded = [ "Font", "Settings" ]
 
 [node name="Node" type="Node"]
-
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 523.8 ]
@@ -32,92 +26,40 @@ __meta__ = {
 Food = ExtResource( 2 )
 Cockroach = ExtResource( 3 )
 HUD = ExtResource( 4 )
-INITIAL_SPEED = 200
 ACCELERATION = 50
-ACCELERATION_OFFSET = 5
 
-[node name="Background" type="Sprite" parent="." index="0"]
-
+[node name="Background" type="Sprite" parent="."]
 position = Vector2( 240, 400 )
 texture = ExtResource( 5 )
 
-[node name="SpawnPath" type="Path2D" parent="." index="1"]
-
+[node name="SpawnPath" type="Path2D" parent="."]
 editor/display_folded = true
 position = Vector2( -50, -50 )
 scale = Vector2( 1.20833, 1.09615 )
 curve = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath" index="0"]
-
+[node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath"]
 position = Vector2( 0, 420.077 )
 rotation = -1.5708
 offset = 100.0
-h_offset = 0.0
-v_offset = 0.0
-rotate = true
-cubic_interp = true
-loop = true
-lookahead = 4.0
-_sections_unfolded = [ "Transform" ]
 
-[node name="SpawnTimer" type="Timer" parent="." index="2"]
-
-process_mode = 1
+[node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 1.2
-one_shot = false
-autostart = false
 
-[node name="TopPanel" type="CanvasLayer" parent="." index="3"]
+[node name="TopPanel" type="CanvasLayer" parent="."]
 
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-
-[node name="TextureRect" type="TextureRect" parent="TopPanel" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="TextureRect" type="TextureRect" parent="TopPanel"]
 margin_right = 40.0
 margin_bottom = 40.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 texture = ExtResource( 6 )
-stretch_mode = 0
 
-[node name="ScoreLabel" type="Label" parent="TopPanel" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="ScoreLabel" type="Label" parent="TopPanel"]
 anchor_right = 1.0
-anchor_bottom = 0.0
 margin_top = 19.0
 margin_bottom = 70.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 0.729412, 0, 1 )
 text = "SCORE 0"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_colors", "custom_fonts" ]
-
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_Timer_timeout"]
-
-

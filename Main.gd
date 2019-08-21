@@ -82,12 +82,11 @@ func on_Food_contamination_updated(contamination):
 
 func on_Food_finish():
 	print("GAME OVER!!!")
-	
-	show_HUD()
-	
 	# stop spawning
 	$SpawnTimer.stop()
 	
+	show_HUD()
+		
 	# remove all cockroaches that left.
 	for cockr in get_tree().get_nodes_in_group("cockroaches"):
 		cockr.fade_out(1.0)
